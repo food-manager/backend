@@ -9,14 +9,13 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      fm-db:
+      fm-db :
         condition: service_started
-
+    restart: on-failure
   fm-db:
     image: mariadb
     restart: always
     environment:
-      MARIADB_USER: root
       MARIADB_PASSWORD: secret_password
       MARIADB_ROOT_PASSWORD: secret_password
     ports:
