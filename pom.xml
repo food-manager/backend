@@ -76,6 +76,7 @@
                         <path>
                             <groupId>org.springframework.boot</groupId>
                             <artifactId>spring-boot-configuration-processor</artifactId>
+                            <proc>none</proc>
                             <version>2.0.4.RELEASE</version>
                         </path>
                     </annotationProcessorPaths>
