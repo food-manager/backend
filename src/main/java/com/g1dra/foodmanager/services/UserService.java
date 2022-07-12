@@ -19,6 +19,7 @@ public class UserService {
     private final JwtAuthenticationProvider authenticationProvider;
 
     private final TokenProvider tokenProvider;
+
     public String createJwtToken(JwtRequest jwtRequest) {
         jwtRequest.setEmail(jwtRequest.getEmail().toLowerCase());
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(jwtRequest.getEmail(), jwtRequest.getPassword());
