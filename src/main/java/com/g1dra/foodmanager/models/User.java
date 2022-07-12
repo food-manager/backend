@@ -1,5 +1,6 @@
 package com.g1dra.foodmanager.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -24,10 +25,15 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    @JsonIgnore
+    private String password;
+
     @Enumerated
     private UserRole role;
 
     @Column(name = "created_at")
     @CreatedDate
     public LocalDateTime createdAt;
+
+
 }
