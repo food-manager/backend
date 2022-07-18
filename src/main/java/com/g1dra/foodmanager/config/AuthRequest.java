@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
-public class JwtRequest {
+public class AuthRequest {
     @NotNull
     @Size(min = 4, max = 50)
     private String email;

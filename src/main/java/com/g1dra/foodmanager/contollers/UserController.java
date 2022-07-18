@@ -1,6 +1,6 @@
 package com.g1dra.foodmanager.contollers;
 
-import com.g1dra.foodmanager.config.JwtRequest;
+import com.g1dra.foodmanager.config.AuthRequest;
 import com.g1dra.foodmanager.config.JwtResponse;
 import com.g1dra.foodmanager.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +20,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/auth")
-    public ResponseEntity<JwtResponse> createJwtToken(@RequestBody @Valid JwtRequest jwtRequest) {
-        String jwt = userService.createJwtToken(jwtRequest);
+    public ResponseEntity<JwtResponse> createJwtToken(@RequestBody @Valid AuthRequest authRequest) {
+        String jwt = userService.createJwtToken(authRequest);
         return ResponseEntity.ok(new JwtResponse(jwt));
     }
 }
