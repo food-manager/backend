@@ -1,9 +1,9 @@
 name: Test pipeline
 on: 
   pull_request:
-    branches: [ githubactions ]
+    branches: [ master ]
   push:
-    branches: [ githubactions ]
+    branches: [ master ]
 
 jobs:
   Test:
