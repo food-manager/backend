@@ -39,7 +39,7 @@ public class FoodIntegrationTest extends FoodManagerBaseIntegrationTest {
     @WithMockUser
     public void listAllFoods() throws Exception {
         List<Food> emptyList = new ArrayList<>();
-        ResultActions response = mockMvc.perform(get("/foods")
+        ResultActions response = mockMvc.perform(get("/api/foods")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(emptyList))
         );
