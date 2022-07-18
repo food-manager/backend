@@ -1,0 +1,19 @@
+name: Test pipeline
+on: 
+  pull_request:
+    branches: [ githubactions ]
+  push:
+    branches: [ githubactions ]
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This job was triggered by a ${{ github.event_name }}."
+      - name: Check out repo code
+        uses: actions/checkout@v3
+      - run: echo "The ${{ github.repository }} has been cloned to the runner."
+      - name: List files in the repo
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "Ths job's status is ${{ job.status }}."
