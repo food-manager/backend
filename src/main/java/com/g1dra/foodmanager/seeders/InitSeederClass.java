@@ -3,9 +3,9 @@ package com.g1dra.foodmanager.seeders;
 import com.g1dra.foodmanager.Repositories.UserRepository;
 import com.g1dra.foodmanager.models.User;
 import com.g1dra.foodmanager.models.UserRole;
+import com.g1dra.foodmanager.utility.PasswordUtility;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -17,9 +17,8 @@ public class InitSeederClass implements CommandLineRunner {
     private final UserRepository userRepository;
 
     private void loadInitUsers() {
-        String salt = BCrypt.gensalt();
         if (userRepository.findByEmail("fmadmin@vegait.rs").isEmpty()) {
-            String hashedPassword = BCrypt.hashpw("foodAdmin", salt);
+            String hashedPassword = PasswordUtility.generateHashedPassword("foodAdmin");
             userRepository.save(
                     User.builder()
                             .name("Admin")

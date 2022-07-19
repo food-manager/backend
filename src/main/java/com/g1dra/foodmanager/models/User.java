@@ -45,4 +45,34 @@ public class User {
     @Column(name = "created_at")
     @CreatedDate
     public LocalDateTime createdAt;
+
+    @Builder(builderMethodName = "userAdminBuilder")
+    public static User createUserAdmin(
+            String name,
+            String email,
+            String password
+    ) {
+        return User.builder()
+                .name(name)
+                .email(email)
+                .password(password)
+                .role(UserRole.ADMIN)
+                .createdAt(LocalDateTime.now())
+                .build();
+    }
+
+    @Builder(builderMethodName = "userRegularBuilder")
+    public static User createUserRegular(
+            String name,
+            String email,
+            String password
+    ) {
+        return User.builder()
+                .name(name)
+                .email(email)
+                .password(password)
+                .role(UserRole.REGULAR)
+                .createdAt(LocalDateTime.now())
+                .build();
+    }
 }
