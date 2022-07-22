@@ -1,6 +1,7 @@
 package com.g1dra.foodmanager.config;
 
 import com.g1dra.foodmanager.Repositories.UserRepository;
+import com.g1dra.foodmanager.exception.UnathorizedRequestException;
 import com.g1dra.foodmanager.models.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -27,12 +28,12 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
         return optionalUser.map(user -> {
                     String plainPassword = (String) authentication.getCredentials();
                     if (!BCrypt.checkpw(plainPassword.trim(), user.getPassword())) {
-                        throw new RuntimeException("Wrong credentials");
+                        throw new UnathorizedRequestException("Wrong credentials!");
                     }
 
                     return new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), authentication.getCredentials(), Arrays.asList(new SimpleGrantedAuthority(user.getRole().toString())));
                 })
-                .orElseThrow(() -> new RuntimeException("Wrong credentials"));
+                .orElseThrow(() -> new UnathorizedRequestException("Wrong credentials!"));
     }
 
     @Override
