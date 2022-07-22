@@ -1,5 +1,6 @@
 package com.g1dra.foodmanager.models;
 
+import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,11 @@ public class Food {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
+    @NotBlank(message = "Name is mandatory")
     public String name;
+
+    @NotBlank(message = "Price is mandatory")
+    public Long price;
 
     @CreatedBy
     @ManyToOne
@@ -29,5 +34,4 @@ public class Food {
     @Column(name = "created_at")
     @CreatedDate
     public LocalDateTime createdAt;
-
 }
